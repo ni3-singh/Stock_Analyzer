@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Indian Stock Analyzer</h1>
+
+    <form method="POST">
+
+        <input type="text" name="ticker" placeholder="Enter Stock Code (Example: RELIANCE.NS)" required>
+
+        <button type="submit">Analyze</button>
+
+    </form>
+
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+
+    {% if data %}
+
+    <div class="card">
+
+        <h2>{{ data.name }}</h2>
+
+        <p><b>Sector:</b> {{ data.sector }}</p>
+
+        <p><b>P/E:</b> {{ data.pe }}</p>
+
+        <p><b>P/B:</b> {{ data.pb }}</p>
+
+        <p><b>ROE:</b> {{ data.roe }}</p>
+
+        <p><b>ROA:</b> {{ data.roa }}</p>
+
+        <p><b>Debt / Equity:</b> {{ data.debt_equity }}</p>
+
+        <p><b>EPS:</b> {{ data.eps }}</p>
+
+        <p><b>Profit Margin:</b> {{ data.profit_margin }}</p>
+
+        <p><b>Revenue Growth:</b> {{ data.revenue_growth }}</p>
+
+    </div>
+
+
+    <div class="score">
+
+        <h2>Fundamental Score: {{ score }}/5</h2>
+
+        <h3>Rating: {{ rating }}</h3>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
