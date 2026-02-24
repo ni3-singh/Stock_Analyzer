@@ -3,7 +3,7 @@ from services.stock_service import fetch_stock_data
 from services.scoring_service import calculate_score
 
 app = Flask(__name__)
-
+#this is a new code
 @app.route("/", methods=["GET", "POST"])
 def home():
 
