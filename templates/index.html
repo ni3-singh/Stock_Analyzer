@@ -26,6 +26,10 @@
 
 
     {% if data %}
+    <div class="card">
+        <h2>Balance Sheet</h2>
+        {{ data.balancesheet | safe }}
+    </div>
 
     <div class="card">
 

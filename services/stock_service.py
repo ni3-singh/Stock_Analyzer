@@ -7,6 +7,13 @@ def fetch_stock_data(ticker):
         if "longName" not in info:
             return None
         
+        #get balance Sheet
+        bs = stock.balance_sheet
+        bs = bs.fillna("N/A")
+
+        #convert dataframe to HTML
+        balancesheet = bs.to_html()
+
         data ={
             "name": info.get("longName"),
             "sector": info.get("sector"),
@@ -18,7 +25,10 @@ def fetch_stock_data(ticker):
             "debt_equity": info.get("debtToEquity"),
             "eps": info.get("trailingEps"),
             "profit_margin": info.get("profitMargins"),
-            "revenue_growth": info.get("revenueGrowth")
+            "revenue_growth": info.get("revenueGrowth"),
+
+            #add balancesheet manually 
+            "balancesheet": balancesheet
 
         }
 
