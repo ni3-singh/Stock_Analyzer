@@ -7,64 +7,117 @@
 
 <body>
 
+<!-- NAVBAR -->
+
+<div class="navbar">
+    <a href="#ratios">Ratios</a>
+    <a href="#balancesheet">Balance Sheet</a>
+    <a href="#income">Income Statement</a>
+    <a href="#score">Score</a>
+</div>
+
+
 <div class="container">
 
-    <h1>Indian Stock Analyzer</h1>
+<h1>Stock Analyzer</h1>
 
-    <form method="POST">
-
-        <input type="text" name="ticker" placeholder="Enter Stock Code (Example: RELIANCE.NS)" required>
-
-        <button type="submit">Analyze</button>
-
-    </form>
+<form method="POST">
+    <input type="text" name="ticker" placeholder="Enter Stock Code (Example: RELIANCE.NS)" required>
+    <button type="submit">Analyze</button>
+</form>
 
 
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
 
 
-    {% if data %}
-    <div class="card">
-        <h2>Balance Sheet</h2>
-        {{ data.balancesheet | safe }}
-    </div>
 
-    <div class="card">
+{% if data %}
 
-        <h2>{{ data.name }}</h2>
+<!-- COMPANY INFO -->
 
-        <p><b>Sector:</b> {{ data.sector }}</p>
+<div id="ratios" class="section">
 
-        <p><b>P/E:</b> {{ data.pe }}</p>
+<div class="card">
 
-        <p><b>P/B:</b> {{ data.pb }}</p>
+<h2>{{ data.name }}</h2>
 
-        <p><b>ROE:</b> {{ data.roe }}</p>
+<p><b>Sector:</b> {{ data.sector }}</p>
+<p><b>P/E:</b> {{ data.pe }}</p>
+<p><b>P/B:</b> {{ data.pb }}</p>
+<p><b>ROE:</b> {{ data.roe }}</p>
+<p><b>ROA:</b> {{ data.roa }}</p>
+<p><b>Debt / Equity:</b> {{ data.debt_equity }}</p>
+<p><b>EPS:</b> {{ data.eps }}</p>
+<p><b>Profit Margin:</b> {{ data.profit_margin }}</p>
+<p><b>Revenue Growth:</b> {{ data.revenue_growth }}</p>
 
-        <p><b>ROA:</b> {{ data.roa }}</p>
-
-        <p><b>Debt / Equity:</b> {{ data.debt_equity }}</p>
-
-        <p><b>EPS:</b> {{ data.eps }}</p>
-
-        <p><b>Profit Margin:</b> {{ data.profit_margin }}</p>
-
-        <p><b>Revenue Growth:</b> {{ data.revenue_growth }}</p>
-
-    </div>
+</div>
 
 
-    <div class="score">
+<!-- FINANCIAL RATIOS TABLE -->
 
-        <h2>Fundamental Score: {{ score }}/5</h2>
+<div class="card">
 
-        <h3>Rating: {{ rating }}</h3>
+<h2>Financial Ratios</h2>
 
-    </div>
+{{ data.ratios_table | safe }}
 
-    {% endif %}
+</div>
+
+</div>
+
+
+
+<!-- SCORE SECTION -->
+
+<div id="score" class="section">
+
+<div class="card">
+
+<h2>Fundamental Score: {{ score }}/5</h2>
+
+<h3>Rating: {{ rating }}</h3>
+
+</div>
+
+</div>
+
+
+
+<!-- BALANCE SHEET -->
+
+<div id="balancesheet" class="section">
+
+<div class="card">
+
+<h2>Balance Sheet (₹ Crores)</h2>
+
+{{ data.balancesheet | safe }}
+
+</div>
+
+</div>
+
+
+
+<!-- INCOME STATEMENT -->
+
+<div id="income" class="section">
+
+<div class="card">
+
+<h2>Income Statement (₹ Crores)</h2>
+
+{{ data.income_statement | safe }}
+
+</div>
+
+</div>
+
+
+{% endif %}
 
 </div>
 
