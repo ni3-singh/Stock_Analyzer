@@ -3,9 +3,13 @@ def calculate_score(data):
     score = 0
     if data["pe"] and data["pe"]<25:
         score +=1
-    if data["roe"] and data["roe"]>0.5:
+    if data["pb"] and data["pb"] < 3:
+        score += 1
+    if data["roe"] and data["roe"]>0.15:
         score +=1
-    if data["debt_equity"] and data["debt_equity"] < 0.5:
+    if data["roa"] and data["roa"]>0.08:
+        score +=1
+    if data["debt_equity"] and data["debt_equity"] < 1.0:
         score += 1
 
     if data["profit_margin"] and data["profit_margin"] > 0.10:
